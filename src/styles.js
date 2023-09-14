@@ -12,7 +12,9 @@ const styles = {
     "text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]",
   sectionSubText:
     "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
-  helper: "border solid 1px red",
+  helperWhite: "border border-1",
+  helperRed: "border-2 border-red-600",
+  helperBlue: "border-2 border-blue-600",
 };
 
 export { styles };
