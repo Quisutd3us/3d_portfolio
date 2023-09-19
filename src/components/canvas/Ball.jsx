@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -10,8 +12,8 @@ import {
 
 import CanvasLoader from "../Loader";
 
-const Ball = (props) => {
-  const [decal] = useTexture([props.imgUrl]);
+const Ball = ({imgUrl}) => {
+  const [decal] = useTexture([imgUrl]);
 
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
@@ -52,6 +54,13 @@ const BallCanvas = ({ icon }) => {
       <Preload all />
     </Canvas>
   );
+};
+Ball.propTypes={
+  imgUrl:PropTypes.string.isRequired
+}
+
+BallCanvas.propTypes = {
+  icon: PropTypes.string.isRequired
 };
 
 export default BallCanvas;
