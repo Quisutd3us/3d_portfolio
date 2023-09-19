@@ -45,9 +45,7 @@ const ExperienceCard = ({ experience }) => (
 
 );
 
-ExperienceCard.propTypes = {
-  experience: PropTypes.object.isRequired
-}
+
 
 const Experience = () => {
   return (
@@ -73,5 +71,7 @@ const Experience = () => {
   )
 }
 
-
+ExperienceCard.propTypes = {
+  experience: PropTypes.object.isRequired
+}
 export default SectionWrapper(Experience, 'work')
