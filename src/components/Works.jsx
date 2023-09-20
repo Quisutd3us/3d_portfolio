@@ -22,7 +22,7 @@ import { fadeIn, textVariant } from "../utils/motion";
           scale: 1,
           speed: 450
         }}
-        className={`bg-tertiary p-5 rounded-2xl w-full sm:w-[360px] hover:shadow-lg  hover:shadow-violet-600 `}
+        className={`bg-tertiary p-5  rounded-2xl w-full sm:w-[360px] hover:shadow-lg  hover:shadow-violet-600 `}
       >
         <div className={`relative w-full h-[230px]`}>
           <img
