@@ -1,3 +1,5 @@
+import { PropTypes } from 'prop-types';
+
 import { Tilt } from 'react-tilt';
 import { motion } from 'framer-motion';
 import { styles } from '../styles';
@@ -9,39 +11,69 @@ import { fadeIn, textVariant } from "../utils/motion";
 
 
 // create stateless Component ProjectCard
-
-const ProjectCard = ({ index, description, image, name, source_tag_link, tags }) => {
+ const ProjectCard = ({ index, description, image, name, source_code_link, tags }) => {
   return (
-    <Tilt className='xs:w-[250px] w-full'>
-      <motion.div
-        variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-        className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
+    <motion.div
+      variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
+    >
+      <Tilt
+        options={{
+          max: 45,
+          scale: 1,
+          speed: 450
+        }}
+        className={`bg-tertiary p-5 rounded-2xl w-full sm:w-[360px] hover:shadow-lg  hover:shadow-violet-600 `}
       >
-        <div
-          // eslint-disable-next-line react/no-unknown-property
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450,
-          }}
-          className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
-        >
+        <div className={`relative w-full h-[230px]`}>
           <img
-            src={icon}
-            alt='web-development'
-            className='w-16 h-16 object-contain'
+            src={image}
+            alt={name}
+            className={'w-full h-full object-cover rounded-2xl'}
           />
+          <div
+            className={'absolute inset-0 flex justify-end m-3 card-img_hover'}
+          >
+            <div
+              onClick={() => window.open(source_code_link, "_black")}
+              className={'black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'}
+            >
+              <img
+                src={github}
+                alt='github'
+                className={'w-1/2 h-1/2 object-contain'}
+              />
+            </div>
 
-          <h3 className='text-white text-[20px] font-bold text-center'>
-            {title}
-          </h3>
+          </div>
         </div>
-      </motion.div>
-    </Tilt>
+        <div className={'mt-5'}>
+          <h3 className='text-white text-[20px] font-bold text-center p-4'>{name}</h3>
+          <p className={'text-secondary text-[14px]'}>{description}</p>
+        </div>
+          {/* rendering tags */}
+          <div className={'mt-2 flex flex-wrap gap-2'}>
+              {
+                tags.map(({name,color}, index)=>(
+                  <p 
+                    key={`tag-${index}`}
+                    className={`${color} text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 `}                  
+                  >{name}</p>
+                ))
+              }
+          </div>
+      </Tilt>
+    </motion.div>
   )
 }
 
-
+ProjectCard.propTypes = {
+  index: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  source_code_link: PropTypes.string.isRequired,
+  tags: PropTypes.array.isRequired,
+};
 
 const Works = () => {
   return (
@@ -62,11 +94,12 @@ const Works = () => {
 
       {/* Tilts Section */}
 
-      <div className={`${styles.helperBlue} mt-20 flex flex-wrap gap-7`}>
+      <div className={`mt-20 flex flex-wrap gap-7`}>
         {
           projects.map((project, index) => (
             <ProjectCard
               key={`project-${index}`}
+              project={project}
               index={index}
               {...project}
             />
