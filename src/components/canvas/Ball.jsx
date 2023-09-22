@@ -44,12 +44,11 @@ const BallCanvas = ({ icon }) => {
     <Canvas
       shadows
       frameloop='demand'
-      dpr={[2, 2]}
+      dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          autoRotate
           enableZoom={false} />
         <Ball imgUrl={icon} />
       </Suspense>
